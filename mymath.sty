@@ -1,0 +1,91 @@
+\ProvidesPackage{mymath}
+
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{MnSymbol}
+
+\usepackage{xifthen}
+
+\RequirePackage{xparse}
+
+% ---- Quantifiers ----
+\newcommand{\Forall}[1]{\ensuremath{\forall {#1} \; \,}}
+\newcommand{\Exists}[1]{\ensuremath{\exists #1 \colon \:}}
+\newcommand{\ExistsOne}[1]{\ensuremath{\exists! #1 \colon \:}}
+
+% ---- Number sets ----
+\newcommand{\Natural}{\mathbb{N}}
+\newcommand{\Integer}{\mathbb{Z}}
+\newcommand{\Rational}{\mathbb{Q}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+
+\newcommand{\ot}{\leftarrow}
+\newcommand{\otto}{\leftrightarrow}
+\newcommand{\To}{\Rightarrow}
+\newcommand{\oT}{\Leftarrow}
+\newcommand{\oTTo}{\Leftrightarrow}
+
+\newcommand{\Set}[1]{\{ #1 \}}
+\DeclareMathOperator{\Expectation}{\mathbb{E}}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\GCD}{GCD}
+
+% ---- Order of element in group ----
+\DeclareMathOperator{\ord}{ord}
+
+% ---- Field characteristic ----
+\DeclareMathOperator{\fchar}{char}
+
+% ---- Matrices set on filed #1 with #2 rows and #3 columns ----
+\NewDocumentCommand{\Matrices}{o m m}{%
+  M_{#2 \times #3}\IfNoValueF{#1}{(#1)}}
+
+% ---- Matrix rank ----
+\DeclareMathOperator{\rk}{rk}
+
+% ---- Factor ----
+\NewDocumentCommand{\Factor}{o m o}{%
+  \IfNoValueTF{#1}{}{#1 \backslash} #2 \IfNoValueTF{#3}{}{/ {\textstyle #3}}
+}
+
+% ---- Linear map kernel and image ----
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Img}{Im}
+
+% ---- Sign operator ----
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\inang}[1]{\langle #1 \rangle}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\NewDocumentCommand{\NSG}{}{\triangleleft}
+\NewDocumentCommand{\NGS}{}{\triangleright}
+\DeclareMathOperator{\St}{St}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\tr}{tr}
+
+\NewDocumentCommand{\GenGroup}{m o}{\langle #1 
+\IfNoValueF{#2}{\mid #2} \rangle}
+\NewDocumentCommand{\GenNGroup}{m}{\langle #1 \rangle_\text{норм}}
+\NewDocumentCommand{\GenFGroup}{m}{\langle #1 \rangle_\text{своб}}
+
+\NewDocumentCommand{\Cycle}{m}{\arraycolsep=1.5pt (\begin{matrix} #1 \end{matrix})}
+
+\NewDocumentCommand{\Centre}{m}{Z(#1)}
+
+% ---- Russian symbols ----
+\RenewDocumentCommand{\epsilon}{}{\varepsilon}
+\RenewDocumentCommand{\phi}{}{\varphi}
+\RenewDocumentCommand{\kappa}{}{\varkappa}
+
+\RenewDocumentCommand{\emptyset}{}{\varnothing}
+
+\RenewDocumentCommand{\le}{}{\leqslant}
+\RenewDocumentCommand{\ge}{}{\geqslant}
+
+% ---- Topology ----
+\DeclareMathOperator{\Int}{Int}

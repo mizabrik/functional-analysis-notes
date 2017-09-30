@@ -1,0 +1,171 @@
+\ProvidesPackage{mystyle}
+
+% ---- Russian language ----
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+\setcounter{tocdepth}{1}
+% ---- Chapter separation and compilation ----
+\usepackage{subfiles}
+
+\RequirePackage{tabularx}
+
+\RequirePackage{xpatch}
+\RequirePackage{indentfirst}
+% ---- Pseudocode ----
+\usepackage{ragged2e}
+\usepackage{algorithm2e}
+
+\SetKwInput{KwData}{Исходные параметры}
+\SetKwInput{KwResult}{Результат}
+\SetKwInput{KwIn}{Входные данные}
+\SetKwInput{KwOut}{Выходные данные}
+\SetAlgorithmName{Алгоритм}{алгоритм}{Список алгоритмов}
+
+% ---- Visual setings ----
+\usepackage[top=1in, bottom=1in, left=1.2in, right=1.2in]{geometry}
+%\usepackage{xcolor}
+
+\usepackage{hyperref}
+%\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{hidelinks, breaklinks}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LE, RO]{\large\scshape\thepage}
+\fancyhead[RE]{\large\scshape{ФИВТ МФТИ}}
+\fancyhead[LO]{\large\scshape{\thetitle}}
+\fancyfoot{}
+
+\renewcommand{\baselinestretch}{1.2}
+
+% ---- Vector graphics ----
+\usepackage{tikz}
+\usepackage{tikz-qtree,tikz-qtree-compat}
+\RequirePackage{wrapfig}
+
+\newsavebox{\fmbox}
+\newenvironment{fmpage}[2][t]%
+{\begin{lrbox}{\fmbox}\begin{minipage}[#1]{#2}}%
+{\end{minipage}\end{lrbox}\fbox{\usebox{\fmbox}}}
+
+\usetikzlibrary{calc}
+
+% ---- Math packages ----
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{euscript}
+\usepackage{mathalfa}
+\usepackage{esvect}
+
+\usepackage{mymath}
+
+\usepackage{listings}
+
+\RequirePackage{titling}
+
+% ---- Enumerate only referenced equations ----
+\mathtoolsset{showonlyrefs}
+
+\NewDocumentEnvironment{enumerate-choice}{}%
+{\begin{enumerate}\renewcommand{\labelnumi}{\asbuk{\enumi}}}%
+{\end{enumerate}}
+
+% ----- amsthm environments -----
+\makeatletter
+\let\thm@indent\indent
+\let\thw@prescip=0
+\def\thm@space@setup{%
+  \thm@preskip=0pt
+  \thm@postskip=0pt
+}
+
+\newdimen\normalparindent
+\normalparindent=\parindent
+\RenewDocumentEnvironment{proof}{O{\proofname}}{\par
+  \pushQED{\qed}%
+  \normalfont% \topsep6\p@\@plus6\p@\relax
+  \topsep0pt \partopsep0pt
+  \trivlist \itemindent\normalparindent
+  \item[\hskip\labelsep
+        \itshape
+    #1\@addpunct{.}]\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+
+% Remove section number from theorem number
+\patchcmd{\@xthm}{\@xp\xdef\csname the#1\endcsname{\@xp\@nx\csname the#3\endcsname
+      \@thmcountersep\@thmcounter{#1}}}{\@xp\xdef\csname the#1\endcsname{\@thmcounter{#1}}}{}{}
+
+\makeatother
+
+
+\RequirePackage{enumitem}
+\RequirePackage{calc}
+\newenvironment{itemproof}%
+{\begin{proof} \leavevmode \begin{description}}%
+{\qedhere \end{description}\end{proof}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[chapter]
+\newtheorem{proposition}{Утверждение}[chapter]
+\newtheorem{lemma}{Лемма}[chapter]
+\newtheorem*{corollary}{Следствие}
+\newtheorem*{fact}{Факт}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}[chapter]
+\newtheorem*{example}{Пример}
+\newtheorem*{examples}{Примеры}
+\newtheorem*{exercise}{Упражнение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+
+% ----- Title page -----
+
+\makeatletter
+
+\newcommand{\@notesauthor}{}
+\newcommand{\notesauthor}[1]{\renewcommand{\@notesauthor}{#1}}
+
+\renewcommand*{\maketitle}{%
+\begin{titlepage}
+
+\newlength{\drop}
+\drop=0.1\textheight
+
+\rule{\textwidth}{1pt}\par
+\vspace{2pt}\vspace{-\baselineskip}
+\rule{\textwidth}{0.4pt}\par
+
+\vspace{\drop}
+\centering
+{\Huge \textsc{\@title}}\\[0.5\baselineskip]
+
+\vspace{0.25\drop}
+\rule{0.3\textwidth}{0.4pt}\par
+\vspace{\drop}
+
+{\Large \textsc{\@author}}\par
+{\large \textsc{Конспект подготовил \@notesauthor}}\par
+
+\vfill
+{\large \textsc{ФИВТ МФТИ}}\par
+{\large \textsc{\@date}}\par
+
+\vspace*{\drop}
+
+\rule{\textwidth}{0.4pt}\par
+\vspace{2pt}\vspace{-\baselineskip}
+\rule{\textwidth}{1pt}\par
+
+\end{titlepage}
+}
+
+\makeatother

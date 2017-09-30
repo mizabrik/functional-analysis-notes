@@ -1,0 +1,268 @@
+\documentclass[main]{subfiles}
+
+\begin{document}
+
+\section{Топологические пространства}
+
+\begin{definition}
+  Назовём пару \( (X, \tau) \), где \( \tau \subset 2^X \),
+  топологическим пространством, если выполнены следующие
+  условия:
+  \begin{enumerate}
+    \item \( \emptyset, X \in \tau \)
+    \item \( \bigcup_\alpha G_\alpha \in \tau \), если
+      \( \Forall{\alpha} G_\alpha \in \tau \)
+    \item \( \bigcap_{k = 1}^n G_k \), если
+      \( \Forall{k \in \{ 1, \dots, n \}} G_k \in \tau \)
+  \end{enumerate}
+  Элементы \( \tau \) называются открытыми множествами,
+  а их дополнения "--- замкнутыми.
+\end{definition}
+
+\begin{definition}
+  Если \( x \in X \) и \( M \subset X \), то \( x \)
+  называется
+  \begin{description}
+    \item[точкой прикосновения] \( M \), если
+      \( \Forall{G \in \tau, x \in G} M \cap G \ne \emptyset \)
+    \item[предельной точкой] \( M \), если
+      \( \Forall{U(x)} \Exists{m \in M} x \ne m \in U(x) \).
+    \item[внутренней точкой] \( M \), если
+      \( \Exists{U(x)} U(x) \subset M \).
+  \end{description}
+\end{definition}
+
+\begin{definition}
+  Последовательность \( x_n \) сходится к \( x \), если
+  \( \Forall{U(x)} \Exists{N} \Forall{n \ge N} x_n \in U \).
+\end{definition}
+
+\begin{exercise}
+  Доказать эквивалентность данных определений аналогичным
+  метрическим.
+\end{exercise}
+
+\begin{remark}
+  Как и в метрических пространствах,
+  что из существовании последовательности
+  \( \{ x_n \} \subset M \) т. ч. \( x_n \to x \)
+  следует, что \( x \) "--- точка прикосновения \( m \).
+  Обратное, вообще говоря, не верно.
+\end{remark}
+
+\begin{definition}
+  \( A \) плотно в \( B \), если \( B \subset \overline{A} \).
+\end{definition}
+
+\begin{exercise}
+  Можно ли заменить в определениее нигде не плотного множества в МП
+  шар на произвольную окрестность? Как быть в ТП?
+\end{exercise}
+
+\begin{example}
+  Для произвольного множества \( X \) можно ввести две
+  топологии: антидискретная \( tau_1 = \{ \emptyset, X \} \)
+  и дискретная \( 2^X \).
+\end{example}
+
+\begin{definition}
+  Топология \( tau_1 \) сильнее \( tau_2 \)
+  (\( \tau_1 \preceq \tau_2 \)),
+  если \( \Forall{M_1 \in \tau_1} M_1 \in \tau_2 \),
+  т. е. \( \tau_1 \subset \tau_2 \).
+\end{definition}
+
+\begin{example}
+  Над \( X = C[a, b] \) \( \rho_1(f, g) = \int_a^b |f(x) - g(x)| dx \),
+  порождает топологию сильнее, чем
+  \( \rho_2(f, g) = \max_x |f(x) - g(x)| \).
+\end{example}
+
+\begin{remark}
+  Обычно, если топология метризуема,
+  то она считается достаточно сильной.
+  Например, в МП \( \Forall{x \ne y}
+  \Exists{U(x), V(y)} U \cap V \ne \emptyset \).
+\end{remark}
+
+\begin{exercise} % даже задача
+  Сходимость в \( D(\Real) \) не порождается никакой метрикой.
+\end{exercise}
+
+\begin{definition}
+\end{definition}
+
+\begin{theorem}
+  Пусть \( (X, \tau_X) \), \( (Y \) "--- топологические пространтсва,
+  \( f : X \to Y \). Тогда следующие утверждения
+  эквивалентны:
+  \begin{enumerate}
+    \item \( f \) "--- непрерывна
+    \item \( \Forall{G \in \tau_Y} f^{-1}(G) \in \tau_X \)
+    \item Замкнутые.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \( (1) \to (2) \) Дано: \( \Forall{V(f(x))} \Exists{U(x)} f(U) \subset V \).
+  Пусть  \( G \in \tau_Y \), тогда для произвольного \( x \in f^{-1}(G) \)
+  мы можем выбрать окрестность \( U(x) \) т. ч. \( f(U) \subset G \To
+  U \subset f^{-1}(G) \). А значит,
+  \( f^{-1}(G) = \bigcup_{x \in f^{-1}(G)} U(x) \).
+
+  \( (2) \to (1) \) Для \( V(f(x)) \) возьмём \( U = f^{-1}(V) \),
+  тогда это открытое множество, и т. к. \( V \) "--- окрестность \( f(x) \),
+  то \( x \in U \). При этом, \( f(U) \subset V \) 
+  (заметим: равенство может не достигаться).
+
+  \( (2) \otto (3) \) Заметим: для произвольного отображения
+  \( f^{-1}(Y \setminus F) = X \setminus f^{-y}(F) \).
+\end{proof}
+
+\begin{definition}
+  Пусть \( X \), \( Y \) "--- топологические пространства,
+  \( f : X \to Y \) "--- биекция, тогда если \( f \) и \( f^{-1} \)
+  непрерывны, то \( f \) называется \emph{гомеоморфизмом}.
+\end{definition}
+
+\begin{remark}
+  Для метрических пространств аналогом гомеоморфизма является
+  \emph{изометрия}, т. е. биекция \( f : X \to Y \) такая,
+  что \( \Forall{x_1, x_2 \in X} \rho_X(x_1, x_2) = 
+  \rho_Y(f(x_1), f(x_2)) \).
+\end{remark}
+
+\begin{exercise}
+  Пусть \( (X, \rho \) "--- метрическое пространство,
+  тогда \( \rho \) "--- непрерывное отображение.
+  Подсказка: \( |\rho(x, y) - \rho(a, b)| \le
+  \rho(x, a) + \rho(y, b) \).
+\end{exercise}
+
+\begin{exercise}
+  Пусть \( f : X \to Y \), \( g : Y \to Z \) "--- непрерывные
+  отображения, тогда \( g \circ f \) "--- тоже непрерывно.
+\end{exercise}
+\begin{exercise}
+  Сохраняется ли в топологических пространствах сходимость
+  последовательности под действием непрерывного отображения?
+\end{exercise}
+
+\begin{definition}
+  Топологическое пространство \( X \) называется \emph{несвязным},
+  если \( X = G_1 \sqcup G_2 \), где
+  \( G_1, G_2 \in \tau_X \setminus \{ \emptyset \} \).
+  Если же \( X \) не является несвязным, то оно
+  называется \emph{связным}. Множество \( Y \subset X \) называется
+  связным или несвязным, если пространство
+  \( Y \) с индуцированной топологией связно или ннесвязно,
+  соответственно.
+\end{definition}
+
+\begin{exercise}
+  Пусть \( G \subset \Real^n \) "--- открытое множество, тогда
+  \( G \) связно тогда и только тогда, когда \( G \)
+  линейно связно. Придумайте пример \( F \subset \Real^2 \),
+  которое связно, но не является линейно связным.
+\end{exercise}
+
+\begin{definition}
+  Топологическое пространство \( X \) компактно,
+  если для любого набора \( \{ G_\alpha \}_{\alpha \in A} \)
+  являющегося покрытием (т. е. такого,
+  что \( X = \bigcup_\alpha G_\alpha \)) существует
+  конечное подпокрытие, т. е.
+  \( \Exists{\alpha_1, \dots, \alpha_n} X = G_{\alpha_1} \cup
+  \dots \cup G_{\alpha_n} \).
+\end{definition}
+
+\begin{exercise}
+  Если \( X \) "--- компактное топологическое пространство,
+  \( Y \) "--- топологическое пространство,
+  \( f : X \to Y \) непрерывно, тогда \( f(X) \) "--- компакт.
+\end{exercise}
+
+\begin{exercise}
+  Пусть \( X \), \( Y \) "--- топологические пространства,
+  \( f : X \to Y \) непрерывно, \( A \subset X \) всюду
+  плотно в \( X \); тогда \( f(A) \) всюду плотно в \( f(X) \).
+\end{exercise}
+
+\begin{definition}
+  Линейным \emph{нормированным пространством} называется
+  линейное пространство \( E \) над \( \Real \) или \( \Complex \)
+  снабжённое \emph{нормой}, т. е. отображением
+  \( || \cdot || : E \to \Real_+ \), для которого выполнены
+  следующие свойства:
+  \begin{enumerate}
+    \item \( ||x|| = 0 \oTTo x = 0 \)
+    \item \( ||\alpha x|| = |\alpha| ||x|| \)
+    \item \( ||x + y || \le ||x|| + ||y|| \).
+  \end{enumerate}
+\end{definition}
+
+\begin{example}
+  \( \Real^n_{p} \), где \( p \ge 1 \), с нормой
+  \( ||x||_p = \left(\sum_{k=1}^n |x_k|^p \right)^{1/p} \).
+\end{example}
+\begin{example}
+  \( \Real^n_\infty \) с нормой \( ||x||_\infty = \max_{k} |x_k| \).
+\end{example}
+\begin{example}
+  \( l_\infty \).
+\end{example}
+\begin{example}
+  Для произвольного \( X \) можно рассматривать
+  \( B(X) \) "--- множество ограниченных числовых функций
+  с нормой \( ||f||_\infty = \sup_{x \in X} |f(x)| \).
+  Заметим: \( l_\infty = B(\Natural) \).
+\end{example}
+
+% C_p[a, b] (интегральная), C[a, b]
+
+\begin{theorem}[принцип вложенных шаров]
+  Пусть \( X \) "--- полное метрическое пространство, \( B_n \) "---
+  последовательность замкнутых вложенных шаров с радиусами
+  \( r_n \to 0 \). Тогда \( \bigcup B_n = \{ x \} \).
+\end{theorem}
+\begin{exercise}
+  Без требования \( r_n \to 0 \), общей точки может не быть.
+\end{exercise}
+
+\begin{theorem}[Бэр]
+  Пусть \( X \) "--- полное метрическое пространство.
+  Тогда \( X \) нельзя представить в виде
+  нельзя представить в виде счётного объединения
+  нигде не плотных множеств, т. е.
+  оно ялвяется \emph{множеством второй категории}
+\end{theorem}
+
+\begin{definition}
+  \( X \) "--- метрическое пространство, 
+  отображение \( f : X \to X \) называется \emph{сжимающим},
+  если \( \Forall{x, y \in X} \rho(f(x), f(y)) \le \alpha \rho(x, y) \)
+  для некоторого \( \alpha \in (0, 1) \).
+\end{definition}
+
+\begin{theorem}[Банах, 1922, принцип сжимающих отображений]
+  Пусть \( X \) "--- полное метрическое пространство,
+  \( f : X \to X \) "--- сжимающее отображение,
+  тогда \( \ExistsOne{x \in X} f(x) = x \).
+\end{theorem}
+
+\begin{theorem}[Хаусдорф, б/д]
+  Для любого неполного МП \( X \) существует его
+  пополнение \( Y \), т. е. 
+\end{theorem}
+
+\begin{exercise}
+  Доказать теорему Хаусдорфа. Подсказка: ввести
+  отношение эквивалентности на классе всех
+  фундаментальных последовательностей,
+  где \( \{ x_n \} \sim \{ y_n \} \),
+  если \( \rho(x_n, y_n) \to 0 \),
+  после чего рассмотрим фактор по нему,
+  и ввести на нём метрику
+  \( \rho([\{ x_n \}], [\{ y_n \}]) = \lim \rho(x_n, y_n) \).
+\end{exercise}
+
+\end{document}
