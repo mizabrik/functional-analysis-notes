@@ -1,0 +1,158 @@
+\documentclass[main]{subfiles}
+
+\begin{document}
+\section{Спектр и резольвента}
+В этом параграфе $E$ "--- банахово пространство над $\Complex$,
+$A \in \mathcal{L}(E)$ и $\lambda \in \Complex$.
+Введём обозначение $A_\lambda \coloneqq A - \lambda I$.
+
+Воспоминание: в линейной алгебре мы изучали собственные значения,
+
+\begin{definition}
+  $\lambda \in \Complex$ называется \emph{регулярной}
+  ($\lambda \in \rho(A)$), если
+  $\exists (A - \lambda I)^{-1} \in \mathcal{L}(E)$.
+  Иначе, $\lambda$ принадлежит спектру ($\lambda \in \sigma(A)$).
+\end{definition}
+
+\begin{example}
+  Если $\dim E < \infty$, то $\sigma(A)$ есть в точности
+  множество собственных значений оператора $A$.
+\end{example}
+
+Если $\Ker A_\lambda \ne \{ 0 \}$, то оператор необратим
+и $\lambda \in \sigma_P(A)$ (точечный спектр); пусть это не так.
+Если $\Img A_\lambda = E$, то по теореме банаха $\lambda \in \rho(A)$.
+Если это не так, но $\overline{\Im A_\lambda} = E$, то $\lambda \in
+\sigma_C(A)$ (непрерывный спектр). Наконец, в противном случае
+$\lambda \in \sigma_R(A)$ (остаточный спектр).
+
+\begin{theorem}
+  Пусть $E(\Complex)$ "--- БП, $A \in \mathcal{L}(E)$.
+  Тогда $\sigma(A)$ "--- замкнутое непустое множество
+  и, более того,
+  \[
+    r(A) \coloneqq \sup_{\lambda \in \sigma} |\lambda| =
+    \lim_{n \to \infty} \sqrt[n]{||A^n||}.
+  \]
+\end{theorem}
+
+$\mathcal{L}(E)$ "--- банахова алгебра.
+>= 1972 В. М. Тихомиров
+
+\begin{proposition}
+  $|\lambda| > ||A|| \To \lambda \in \rho(A)$.
+\end{proposition}
+\begin{proof}
+  $A - \lambda I = - \lambda (I - \frac{1}{\lambda} A)$,
+  и тогда, т. к. $||-\frac{1}{\lambda} A|| < 1$,
+  по теореме существует обратный $-\frac1\lambda \sum \frac1{\lambda^n} A^n$.
+\end{proof}
+
+Резольвентой назовём $R_\lambda \coloneqq A_\lambda^{-1}$.
+
+\begin{proposition}
+  $\rho(A)$ "--- открытое множество/
+\end{proposition}
+\begin{proof}
+  Пусть $\lambda \in \rho(A)$, тогда
+  если $||\delta A|| < \frac{1}{||A^{-1}||}$
+\end{proof}
+
+\begin{proposition}
+  $R_\lambda$ непрерывна на $\rho(A)$
+\end{proposition}
+\begin{proof}
+  Аналогично применяем теорему, точнее,
+  \[ ||(A + \delta A)^{-1} - A^{-1}|| \le
+    \frac{||A^{-1}||^2 ||\delta A||}{1 - ||\delta A|| \cdot ||A^{-1}||}
+  \]
+\end{proof}
+
+\begin{proposition}[равенство Гильберта]
+  Пусть $\lambda_0, \lambda \in \rho(A)$, тогда
+  \[
+    R_\lambda - R_{\lambda_0} = (\lambda - \lambda_0)
+    R_\lambda R_{\lambda_0}.
+  \]
+\end{proposition}
+\begin{proof}
+  По определению, $R_\lambda A_\lambda = A_\lambda R_\lambda = I$,
+  поэтому
+  \[ R_\lambda - R_{\lambda_0} = 
+    R_\lambda A_{\lambda_0} R_{\lambda_0} -
+    R_\lambda A_\lambda R_{\lambda 0} =
+    R_\lambda (A_{\lambda_0} - A_\lambda) R_{\lambda_0} =
+    R_\lambda (\lambda E - \lambda_0 E) R_{\lambda_0} =
+    (\lambda - \lambda_0) R_\lambda R_{\lambda_0}.
+  \]
+\end{proof}
+
+\begin{proposition}
+  $R_\lambda$ дифференцируема на $\rho(A)$.
+\end{proposition}
+\begin{proof}
+  \[  \frac{R_\lambda - R_{\lambda_0}}{\lambda - \lambda_0} =
+    \frac{(\lambda - \lambda_0) R_\lambda R_{\lambda_0}}{\lambda - \lambda_0} =
+    R_\lambda R_{\lambda_0} \xrightarrow{\lambda \to \lambda_0} R_{\lambda_0}^2.
+    \qedhere
+  \]
+\end{proof}
+
+\begin{proposition}
+  Радиус сходимости ряда равен $r(A)$.
+\end{proposition}
+\begin{proof}
+  Пусть $|\lambda| > r(A)$, тогда $\lambda \in \rho(A)$
+  вне круга $|\lambda| \le r(A)$.
+  $R_\lambda$ разложим в ряд Лорана, который
+  сходится при $|\lambda| > |r(A)|$.
+  
+  Пусть $|\lambda_| < r(A)$. Утверждается, что ряд Неймана
+  расходится в этой точке. Пусть это не так, тогда
+  он сходится и для $|\lambda| > |\lambda_0|$,
+  и тогда $r(A)$ "<не является спектральным радиусом">.
+\end{proof}
+
+\begin{proposition}
+  $\lambda \in \sigma(A) \To \lambda^n \in \sigma(A^n)$.
+\end{proposition}
+
+\begin{exercise}
+  $\sigma(A^n) = (\sigma(A))^n $.
+\end{exercise}
+
+\begin{proof}
+  Предоложим противное: $\lambda^n \in \rho(A^n)$, т. е.
+  $(A - \lambda I)^{-1} \in \mathcal{L}(E)$.
+  Тогда умножим равенство
+  \[ (A^n - \lambda^n I) = (A - \lambda I)
+  (A^{n -1} + \lambda A^{n-2} + \dots + \lambda^{n-1} I) \]
+  справа на $(A^n - \lambda^n I)^{-1}$ мы покажем, что
+  $(A^{n -1} + \lambda A^{n-2} + \dots + \lambda^{n-1} I)(A^n - \lambda^n I)^{-1}$
+  "--- правый обратный для $(A - \lambda I)$, аналогично находим левый обратный,
+  и тогда $\lambda \in \rho(A)$.
+\end{proof}
+
+\begin{proposition}
+  $\sigma(A) \ne \emptyset$
+\end{proposition}
+\begin{proof}
+  Предположи противное, т. е. что $R_\lambda$ "--- целая функция.
+  А там тип теорема Лиувилля.
+\end{proof}
+
+\begin{proposition} % 6
+  $ r(A) = \lim \sqrt[n]{||A^n||} $.
+\end{proposition}
+\begin{proof}
+  Имеем: $r(A)  = r_{\text{сх}} = \limsup \sqrt[n]{||A^n||}$.
+
+  По утв $(r(A))^n \le r(A^n)$, или
+  $r(A) \le \left(r(A^n) \right)^{1/n} \le ||A^n||^{1/n}$.
+  Значит,
+  \[ \liminf_{n \to \infty} \sqrt[n]{||A^n||} \ge r(A) = \limsup_{n \to \infty} \sqrt[n]{||A^n||}, \]
+  а тогда верхний и нижний пределы совпадают, и существует равный им предел последовательности.
+\end{proof}
+ 
+\end{document}

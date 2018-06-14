@@ -1,17 +1,19 @@
 \documentclass[main]{subfiles}
 
 \begin{document}
-\section{Метрические пространства}
+\section{Метрические и топологические пространства}
+\subsection{Метрические пространства}
 
 \begin{definition}
   \emph{Метрическое пространство} "--- это
-  пара \( (X, \rho) \), где \( \rho : X \times X \to \Real_+ \) и
+  пара \( (X, \rho) \), где \( \rho : X \times X \to \Real \) и
   для любых \( x, y, z \in X \) верно:
   \begin{enumerate}
-    \item \( \rho(x, y) = 0 \oTTo x = y \)
+    \item \( \rho(x, y) \ge 0 \), \( \rho(x, y) = 0 \oTTo x = y \)
     \item \( \rho(x, y) = \rho(y, x) \)
     \item \( \rho(x, y) \le \rho(x, z) + \rho(z, y) \)
   \end{enumerate}
+  Отображение \( \rho \) называется \emph{метрикой}.
 \end{definition}
 
 Примеры метрических пространств:
@@ -21,39 +23,43 @@
   \item 
     \( (\Real^n, \rho_p) \), где \( p \ge 1 \) и
     \( \rho_p(x, y) = \left( \sum_{k=1}^{n}
-    |x_k - y_k|^p \right)^{1/p} \)
+    |x_k - y_k|^p \right)^{1/p} \),
+    \( \rho_\infty(x, y) = \max_k |x_k - y_k| \)
   \item 
     \( C[a, b] \) с метрикой
     \( \rho(f, g) = \sup_{x \in [a, b]} |f(x) - g(x)| \)
   \item \( C_2[a, b] \) с метрикой
-    \( \rho(f, g) = \sqrt{\int_a^b |f(x) - g(x)| dx} \)
+    \( \rho(f, g) = \sqrt{\int_a^b |f(x) - g(x)|^2 dx} \)
 \end{itemize}
 
-  Подпространство: \( Y \subset X \) и индуциорванная метрика:
-  \( \rho_Y(y_1, y_2) = \rho_X(y_1, y_2) \) 
+\begin{definition}
+  \emph{Подпространством} метрического пространства \( (X, \rho_X) \)
+  называется подмножество \( Y \subset X \) с индуциорванной метрикой
+  \( \rho_Y(y_1, y_2) = \rho_X(y_1, y_2) \).
+\end{definition}
 
-В следующих определениях \( (X, \rho) \) "---
-метрическое пространство.
+До начала рассмотрения топологических пространств будем считать,
+что \( (X, \rho) \) "--- метрическое пространство.
   
 \begin{definition}
-  Множество \( A \subset X \) называется ограниченным,
+  Множество \( A \subset X \) называется \emph{ограниченным},
   если
   \[ \sup_{a, b \in A} \rho(a, b) < \infty. \]
 \end{definition}
 
 \begin{definition}
-  Расстоянием между множествами \( A, B \subset X \)
+  \emph{Расстоянием между множествами} \( A, B \subset X \)
   называется
-  \[ \rho(A, B) = \inf_{a \in A, b \in B} \rho(a, b). \]
+  \[ \rho(A, B) := \inf_{a \in A, b \in B} \rho(a, b). \]
 \end{definition}
 
 \begin{definition}
-  Открытыми и замкнутыми шарами называются, соответственно, множества вида
+  \emph{Открытыми} и \emph{замкнутыми шарами} называются, соответственно, множества вида
   \begin{gather}
     B(x, r) = \{ y \in X \mid \rho(y, x) < r \}, \\
     \overline{B}(x, r) = \{ y \in X \mid \rho(y, x) \le r \},
   \end{gather}
-  где \( x \in X \) "--- центр шара и \( r > 0 \) "--- его радиус.
+  где \( x \in X \) "--- \emph{центр} шара и \( r > 0 \) "--- его \emph{радиус}.
   Далее будем опускать центр или радиус, если это не существенно.
 \end{definition}
 
@@ -78,9 +84,14 @@
   если \( M = \overline{M} \) или \( M = \Int M \), соответственно.
 \end{definition}
 
+\begin{proposition}
+  Точка \( x \) является предельной для \( M \) \( \oTTo \) любой шар
+  \( B(x) \) содержит бесконечно много точек \( M \).
+\end{proposition}
+
 \begin{remark}
-  Для произвольного \( M \subset X \)
-  \( \Int M \subset M \subset \overline{X} \).
+  Для произвольного \( M \subset X \) выполнено
+  \( \Int M \subset M \subset \overline{M} \).
 \end{remark}
 
 \begin{definition}
@@ -99,20 +110,30 @@
   \( A \subset X \) \emph{плотно в} \( B \subset X \),
   если \( B \subset \overline{A} \).
   Множество плотне в \( X \) называется \emph{всюду плотным};
-  если же не существует такого шара \( B \),
+  если же не существует такого шара \( B(x, r) \),
   что \( A \) плотно в \( B \),
   то \( A \) называется \emph{нигде не плотным}.
 \end{definition}
 
+\begin{proposition}
+  \( A \) нигде не плотно \( \oTTo \) \( \overline{A} \) не содержит шаров.
+\end{proposition}
+
 \begin{definition}
-  Метрическое пространство \( X \) называется сепарабельным,
+  Метрическое пространство \( X \) называется \emph{сепарабельным},
   если в нём есть не более, чем счётное всюду плотное подмножество.
 \end{definition}
 
 \begin{definition}
   Если \( U \subset X \) открыто и \( x \in U \), то
-  \( U \) называется \emph{окрестностью} точки \( x \).
+  \( U \) называется \emph{окрестностью} точки \( x \)
+  (обозначение: \( U(x) \)).
 \end{definition}
+
+\begin{proposition}
+  \( x \) "--- точка прикосновения \( M \subset X \)
+  \( \oTTo \) \( \Forall{U(x)} U \cap M \ne \emptyset \).
+\end{proposition}
 
 Далее под \( G \) будем подразумевать открытые множества,
 а под \( F \) "--- замкнутые.
@@ -144,8 +165,8 @@
 \end{theorem}
 \begin{proof}
   Пусть \( x \in G = \bigcup_{\alpha} G_\alpha \), тогда
-  \( \Exists{\alpha \in A} x \in G_\alpha \), но \( G_\alpha \)
-  открыто, откуда \( \exists B(x) \subset G_\alpha \subset G \).
+  \( \Exists{\alpha \in A} x \in G_\alpha \), а т. к. \( G_\alpha \)
+  открыто, \( \exists B(x) \subset G_\alpha \subset G \).
   Значит, \( G \) "--- открыто.
 
   Пусть теперь \( G = \bigcap_{k = 1}^n G_k \) и \( x \in G \).
@@ -158,7 +179,15 @@
   т. е. \( x \) "--- внутренняя точка \( G \).
 
   Утверждения для замкнутых множеств следуют из уже доказанной половины
-  теоремы, предыдущей теоремы и формул де Моргана.
+  теоремы, предыдущей теоремы и формул де Моргана:
+  для произвольного семейства подмножеств \( X \) \( \{ Y_\alpha \}_{\alpha \in A} \)
+  \[
+    X \setminus \left( \bigcup_\alpha Y_\alpha \right) =
+    \bigcap_\alpha (X \setminus Y_\alpha),
+    \quad
+    X \setminus \left( \bigcap_\alpha Y_\alpha \right) =
+    \bigcup_\alpha (X \setminus Y_\alpha).
+  \]
 \end{proof}
 
 \begin{theorem}
@@ -184,21 +213,20 @@
     \item Заметим: \( M_1 \subset M_2 \To \Int M_1 \subset \Int M_2 \).
       Тогда если \( x \in \Int M \), то
       \( \Exists{B(x)} B(x) \subset M \To
-      B(x) = \Int B(x) \subset \Int M \).
-      Значит,
-      \[ \Int M = \bigcup_{x \in \Int M} B(x), \]
-      и тогда, по теореме~\ref{thm:metric-topolotgy},
-      \( \Int M \) "--- открытое множество.
+      B(x) = \Int B(x) \subset \Int M \), т. е.
+      \( x \) "--- внутренняя точка \( \Int M \).
+      Значит, \( \Int M \) "--- открытое множество.
   \end{enumerate}
   Доказательство оставшихся двух пунктов остаётся в качестве упражнения.
 \end{proof}
 
 \begin{remark}
   Для произвольного \( M \subset X \)
-  \begin{align}
-    \Int M       &= \bigcup_{G \subset M} G, \\
-    \overline{M} &= \bigcap_{M \subset F} F.
-  \end{align}
+  \[
+    \Int M = \bigcup_{G \subset M} G,
+    \quad
+    \overline{M} = \bigcap_{F \supset M} F.
+  \]
 \end{remark}
 
 \end{document}

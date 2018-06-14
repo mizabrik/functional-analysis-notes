@@ -1,0 +1,76 @@
+\documentclass[main]{subfiles}
+
+\begin{document}
+
+\section{Сопряжённое пространство}
+
+\begin{definition}
+  Пусть \( E \) "--- ЛНП над полем \( F \),
+  где \( F = \Real \) или \( F = \Complex \).
+  \emph{Сопряжённым пространством} назовём
+  \[ E^* \coloneqq \mathcal{L}(E, F), \]
+  его элементы будем называть \emph{линейными функционалами}.
+\end{definition}
+
+\begin{example}
+  Рассмотрим \( \Real_2^3 \) и линейную форму
+  \( f(x) = a_1 x_1 + a_2 x_2 + a_3 x_3 \).
+  Это "--- пример линейного функционала.
+\end{example}
+
+\begin{exercise}
+  Пусть \( E \) "--- ЛНП, \( f \in E^* \), \( f \ne 0 \).
+\end{exercise}
+
+\begin{theorem}[Рисс-Фреше]
+  Пусть \( H \) "--- гильбертово пространство
+  (над \( \Real \) или \( \Complex \)),
+  \( f \in H^* \). Тогда
+  \[ \ExistsOne{x \in H} \Forall{h \in H} f(h) = (h, x). \]
+\end{theorem}
+\begin{proof}
+  Покажем единственность. Если \( \Forall{h \in H}
+  (h, x_1) = (h, x_2) \), то выбрав \( h = x_1 - x_2 \)
+  получим \( (x_1 - x_2, x_1) = (x_1 - x_2, x_2) \To
+  (x_1 - x_2, x_1 - x_2) = ||x_1 - x_2||^2 = 0 \To x_1 = x_2 \).
+
+  Если \( f = 0 \), то можем положим \( x = 0 \).
+  Иначе, \( Ker f = M \ne H \), и тогда
+  \( H = M \oplus M^\perp \), и \( M^\perp \ne \{ 0 \} \).
+  Выберем ненулевой \( x_0 \in M^\perp \). Для произвольного
+  \( h \in H \) положим \( y = h - \frac{f(h)}{f(x_)} x_0 \),
+  тогда \( f(y) = f(h) - \frac{f(h)}{f(x_0)} f(x_0) = 0 \),
+  т. е. \( y \in \Ker f \To y \perp x_0 \).
+  \[ (h, x_0) = (y + \frac{f(h)}{f(x_0)}, x_0) =
+    (y, x_0) + \frac{f(h)}{f(x_0)} (x_0, x_0) =
+  \frac{||x_0||^2}{f(x_0)} f(h) \To
+  f(h) = (h, \frac{\overline{f(x_0)}}{||x_0||^2} x_0),
+  \]
+  а значит, мы можем положить \( x = \frac{\overline{f(x_0)}}{||x_0||^2} x_0 \).
+\end{proof}
+
+\begin{proof}[Координаты]
+  Если \( H \) "--- сепарабельно, то мы можем выбрать ОНБ \( \{ e_n \} \),
+  и \[ \Forall{h \in H} h = \sum_{n = 1}^\infty (h, e_n) e_n. \]
+  Т. к. \( f \) "--- непрерывен, то \( f(S_n) \to f(h) \), т. е.
+  \( f(h) = \sum (h, e_n) f(e_n) \).
+  Заметим: если \( (x, y) = \sum (x, e_n) \overline{(y, e_n)} \).
+\end{proof}
+\begin{corollary}
+  \( ||x||_H = ||f||_{H^*} \).
+\end{corollary}
+
+\begin{definition}
+  Пусть \( E \) "--- ЛНП, \( \{ x_n \} \subset E \). Тогда 
+  \( \{ x_n \} \) слабо сходится к \( x \in E \), если
+  \( \Forall{f \in E^*} f(x_n) \to f(x) \)
+\end{definition}
+\begin{remark}
+  Для гильбретого пространства \( H \) \( \{ x_n \} \)
+  слабо сходится к \( x \), если \( \Forall{h \in H}
+  (x_n, h) \to (x, h) \).
+\end{remark}
+
+  
+
+\end{document}

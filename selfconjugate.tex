@@ -1,0 +1,120 @@
+\documentclass[main]{subfiles}
+
+\begin{document}
+\section{Сопряжённые операторы} % 11
+
+Пусть задано два линейных нормированных пространства
+$E_1$ и $E_2$ над $\Complex$; нас так же будут
+интересовать их сопряжённые пространства
+$E_1^*$ и $E_2^*$.
+Пусть так же зафиксирован оператор $A \in \mathcal{L}(E_1, E_2)$,
+тогда существует естественный способ определить
+отображение $A^* : E_2^* \to E_1^*$:
+\[
+  g \mapsto g \circ A
+\]
+благодрая тому, что композиция сохраняет линейность
+и непрерывность.
+
+\begin{definition}
+  \( A^* \) называется \emph{сопряжённым} к \( A \) оператором.
+\end{definition}
+
+\begin{theorem}%11.1
+  Пусть $E_1$, $E_2$ "--- ЛНП над $\Complex$,
+  $A \in \mathcal{L}(E_1, E_2)$.
+  Тогда $A^* \in \mathcal{L}(E_2^*, E_1^*)$
+  и $||A^*|| = ||A|$.
+\end{theorem}
+\begin{proof}
+  Линейность $A^*$ очевидна из равенства
+  $(A^* g)(x) = g(Ax)$. Более того,
+  \[
+    |(A^* g)(x)| = |g(Ax)| \le
+    ||g|| \cdot ||Ax|| \le ||g|| \cdot ||A|| \cdot ||x||,
+  \]
+  т. е. $||A^* g|| \le ||A|| \cdot ||g||$.
+  Значит, $A^*$ непрерывен и, более того,
+  $||A^*|| \le ||A||$.
+
+  Осталось доказать, что $||A^*|| \ge ||A||$.
+  Действительно, по следствию из теоремы Хана-Банаха для произвольного $x \in E_1$
+  \[
+    ||A x|| = \sup_{||g||_{E_2^*} = 1} |g(Ax)| =
+    \sup_{||g|| = 1} |(A^* g)(x)| \le
+    \sup_{||g|| = 1} ||A^* п|| \cdot ||x|| \le
+    \sup_{||g|| = 1} ||A^*|| \cdot ||g|| \cdot ||x|| =
+    ||A^*|| \cdot ||x||.
+  \]
+\end{proof}
+
+В гильбертовых пространствах такие берём теорему
+Рисса-Фреше и получаем $A^* \in \mathcal{L}(H_2, H_1)$.
+
+\begin{exercise}[без Т11.1]
+  Пусть $H$ "--- гильбертово пространство,
+  $A \in \mathcal{L}(H)$.
+  Тогда существует $A^* \in \mathcal{L}(H)$
+  такой, что
+  \( \Forall{x, y \in H} (Ax, y) = (x, Ay) \)
+  и $||A^*|| = ||A||$.
+\end{exercise}
+
+\begin{exercise}
+  Пусть $H$ "--- ГП, $A, B \in \mathcal{L}(H)$.
+  Тогда
+  \begin{enumerate}
+    \item $(\alpha A + \beta B)^* = \overline{\alpha} A^* + \overline{\beta} B^*$
+    \item $(AB)^* = B^* A^*$
+    \item $I^* = I$
+    \item $(A^*)^* = A$
+  \end{enumerate}
+\end{exercise}
+
+\begin{theorem}%11.2
+  Пусть $H$ "--- гильбертово пространство над $\Complex$,
+  $A \in \mathcal{L}(H)$. Тогда
+  \[
+    \overline{\Img A} \oplus \Ker A^* = H.
+  \]
+\end{theorem}
+\begin{proof}
+  Покажем, что $(\Img A)^\perp = \Ker A^*$,
+  тогда проекция.
+
+  $y \in (\Img A)^\perp \oTTo
+  \Forall{x \in H} (Ax, y) = 0
+  \oTTo \Forall{x \in H} (f, A^* y) = 0
+  \oTTo A^* y = 0 \oTTo y \in \Ker A^*$.
+\end{proof}
+
+\begin{exercise}
+  $A \in \mathcal{L}(l_2)$,
+  $(Ax)_n = \sum_{k=1}^\infty a_{nk} x_k$,
+  $\sum |a_{nk}|^2 < \infty$.
+  Тогда $A^*$ задаётся $b_{ij} = \overline{a_{ji}}$.
+\end{exercise}
+
+\section{Самосопряжённые операторы}
+
+\begin{definition}
+  Пусть $H$ "--- гильбертово пространство,
+  $A \in \mathcal{L}(H)$. $A$ называется
+  \emph{самосопряжённым}, если $A^* = A$.
+\end{definition}
+
+\begin{remark}
+  Самосопряжённость подразумевает линейность и ограниченность,
+  свойство $(Ax, y) = (x, Ay)$ определяет класс
+  \emph{симметрических} операторов.
+  Однако, теорема Хеллингера-Тёлпица утверждает,
+  что симметрический линейный оператор будет также ограниченным,
+  а потому и самосопряжённым.
+\end{remark}
+
+\begin{exercise}
+  Докажите неравенство Коши-Буняковского для полускалярного
+  произведения.
+\end{exercise}
+
+\end{document}

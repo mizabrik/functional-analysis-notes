@@ -111,15 +111,19 @@
 {\qedhere \end{description}\end{proof}}
 
 \theoremstyle{plain}
-\newtheorem{theorem}{Теорема}[chapter]
+%\newtheorem{theorem}{Теорема}[chapter]
+\newtheorem{theorem}{Теорема}[section]
 \newtheorem*{theorem*}{Теорема}
-\newtheorem{proposition}{Утверждение}[chapter]
-\newtheorem{lemma}{Лемма}[chapter]
+%\newtheorem{proposition}{Утверждение}[chapter]
+\newtheorem{proposition}{Утверждение}[section]
+%\newtheorem{lemma}{Лемма}[chapter]
+\newtheorem{lemma}{Лемма}[section]
 \newtheorem*{corollary}{Следствие}
 \newtheorem*{fact}{Факт}
 
 \theoremstyle{definition}
-\newtheorem{definition}{Определение}[chapter]
+%\newtheorem{definition}{Определение}[chapter]
+\newtheorem{definition}{Определение}[section]
 \newtheorem*{example}{Пример}
 \newtheorem*{examples}{Примеры}
 \newtheorem*{exercise}{Упражнение}
@@ -128,6 +132,9 @@
 \theoremstyle{remark}
 \newtheorem*{remark}{Замечание}
 
+\newenvironment{exampleslist}%
+{\begin{examples} \leavevmode \begin{enumerate}}%
+{\qedhere \end{enumerate}\end{examples}}
 
 % ----- Title page -----
 
