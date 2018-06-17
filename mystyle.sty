@@ -106,9 +106,13 @@
 
 \RequirePackage{enumitem}
 \RequirePackage{calc}
-\newenvironment{itemproof}%
-{\begin{proof} \leavevmode \begin{description}}%
+%\newenvironment{itemproof}%
+%{\begin{proof} \leavevmode \begin{description}}%
+%{\qedhere \end{description}\end{proof}}
+\NewDocumentEnvironment{itemproof}{o}%
+{\IfNoValueTF{#1}{\begin{proof}}{\begin{proof}[#1]} \leavevmode \begin{description}}%
 {\qedhere \end{description}\end{proof}}
+
 
 \theoremstyle{plain}
 %\newtheorem{theorem}{Теорема}[chapter]

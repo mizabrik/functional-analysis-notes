@@ -94,5 +94,8 @@
 \DeclareMathOperator{\weakto}{\xrightarrow[\text{сл.}]{}}
 \NewDocumentCommand{\weakclosure}{m}{\overline{#1}^{\text{с.с.}}}
 
-\NewDocumentCommand{\Linears}{m o}{\mathcal{L} (#1, \IfNoValueF{#2}{, #2})}
-\NewDocumentCommand{\Inner}{m m}{\langle #1, #2 \rangle}
+\NewDocumentCommand{\Linears}{m o}{\mathcal{L} (#1\IfNoValueF{#2}{, #2})}
+\NewDocumentCommand{\Inner}{m}{\langle #1 \rangle}
+
+\renewcommand\Re{\operatorname{Re}}
+\renewcommand\Im{\operatorname{Im}}
