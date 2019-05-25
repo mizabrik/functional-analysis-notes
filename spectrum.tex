@@ -1,15 +1,47 @@
 \documentclass[main]{subfiles}
 
 \begin{document}
-\section{Спектр и резольвента}
-В этом параграфе $E$ "--- банахово пространство над $\Complex$,
-$A \in \mathcal{L}(E)$ и $\lambda \in \Complex$.
-Введём обозначение $A_\lambda \coloneqq A - \lambda I$.
+\section{Спектр и резольвента} % 7
+Воспоминание: в линейной алгебре
+мы изучали собственные значения линейных операторов,
+т. е. такие числа \( \lambda \),
+что для некоторого ненулевого \( x \)
+\[ Ax = \lambda x; \]
+очевидно, это эквивалентно выполнению равенства
+\[ \det (A - \lambda I) = 0. \]
 
-Воспоминание: в линейной алгебре мы изучали собственные значения,
+% связь с ОТА, её доказательство в ТФКП
+
+Банахова алгебра: +умножение, асс. дистрибутивно, единица,
+\( ||xy|| \le ||x|| \cdot ||y|| \), \( ||e|| = 1 \).
+
+Далее мы будем пользоваться тем фактом, что многие результаты
+курса комплексного можно перенести на отображения из
+комплексных чисел в некоторую банахову алгебру.
+Понятия предела, производной и
+
+Далее в этом параграфе,
+если не указано обратное,
+\( E \) "--- банахово пространство над \( \Complex \),
+$A \in \Linears{E}$ и $\lambda \in \Complex$.
+Также введём обозначение $A_\lambda \coloneqq A - \lambda I$.
+
+Самое важная для приложений — существование
+ОНБ из с. в. для эрмитового оператора.
+Например, для использования метода Фурье решения ДУ.
+Функция Грина для перехода в интегральные, потом Гильберт-Шмидт,
+
+\begin{theorem*}[Гильберт--Шмидт]
+  Пусть \( H \) "--- сепарабельное гильбертово пространство,
+  \( A \in \Linears{H} \) "--- компактный самосопряжённый оператор.
+  Тогда в \( H \) найдётся ортонормированный базис,
+  состоящий из состоящий из собственных векторов \( A \).
+\end{theorem*}
 
 \begin{definition}
-  $\lambda \in \Complex$ называется \emph{регулярной}
+  Пусть \( E \) "--- ЛНП над \( \Complex \),
+  \( A \in \Linears{E} \).
+  Точка \( \lambda \in \Complex \) называется \emph{регулярной}
   ($\lambda \in \rho(A)$), если
   $\exists (A - \lambda I)^{-1} \in \mathcal{L}(E)$.
   Иначе, $\lambda$ принадлежит спектру ($\lambda \in \sigma(A)$).
@@ -40,36 +72,54 @@ $\lambda \in \sigma_R(A)$ (остаточный спектр).
 $\mathcal{L}(E)$ "--- банахова алгебра.
 >= 1972 В. М. Тихомиров
 
-\begin{proposition}
-  $|\lambda| > ||A|| \To \lambda \in \rho(A)$.
+\begin{proposition} % 0
+  $\rho(A)$ "--- открытое множество.
 \end{proposition}
 \begin{proof}
-  $A - \lambda I = - \lambda (I - \frac{1}{\lambda} A)$,
-  и тогда, т. к. $||-\frac{1}{\lambda} A|| < 1$,
-  по теореме существует обратный $-\frac1\lambda \sum \frac1{\lambda^n} A^n$.
-\end{proof}
-
-Резольвентой назовём $R_\lambda \coloneqq A_\lambda^{-1}$.
-
-\begin{proposition}
-  $\rho(A)$ "--- открытое множество/
-\end{proposition}
-\begin{proof}
+  Заметим, что
+  \[
+    A - \lambda I = -\lambda (I - \frac{1}{\lambda} A
+  \].
   Пусть $\lambda \in \rho(A)$, тогда
   если $||\delta A|| < \frac{1}{||A^{-1}||}$
 \end{proof}
 
-\begin{proposition}
-  $R_\lambda$ непрерывна на $\rho(A)$
+%\begin{proposition}
+%  $|\lambda| > ||A|| \To \lambda \in \rho(A)$.
+%\end{proposition}
+%\begin{proof}
+%  $A - \lambda I = - \lambda (I - \frac{1}{\lambda} A)$,
+%  и тогда, т. к. $||-\frac{1}{\lambda} A|| < 1$,
+%  по теореме существует обратный $-\frac1\lambda \sum \frac1{\lambda^n} A^n$.
+%\end{proof}
+%
+Резольвентой назовём $R_\lambda \coloneqq A_\lambda^{-1}$.
+
+
+\begin{proposition} % 1
+  $R_\lambda$ "--- непрерывное отображение на $\rho(A)$.
 \end{proposition}
 \begin{proof}
-  Аналогично применяем теорему, точнее,
-  \[ ||(A + \delta A)^{-1} - A^{-1}|| \le
-    \frac{||A^{-1}||^2 ||\delta A||}{1 - ||\delta A|| \cdot ||A^{-1}||}
+  Благодаря ряду Неймана мы можем оценить изменение нормы:
+  \( A + \Delta = A \cdot (I + A^{-1} \Delta) \),
+  а потому
+  \[
+    (A + \Delta)^{-1} = \sum_{n=0}^\infty (-1)^n (A^{-1} \Delta)^n A^{-1},
+  \]
+  значт,
+  \[
+    ||(A + \Delta)^{-1} - A^{-1}|| \le \frac{||A^{-1}||^2 ||\Delta||}
+    {1 - ||A^{-1}|| \cdot ||\Delta||}.
+  \] %???
+  Тогда при \( \lambda \to \lambda_0 \)
+  \[
+    ||R_{\lambda} - R_{\lambda_0}|| \le
+    \frac{||R_{\lambda_0}||^2 \cdot |\lambda - \lambda_0|}
+    {1 - ||R_{\lambda_0}|| \cdot |\lambda - \lambda_0|} \to 0.
   \]
 \end{proof}
 
-\begin{proposition}[равенство Гильберта]
+\begin{proposition}[равенство Гильберта] % 2
   Пусть $\lambda_0, \lambda \in \rho(A)$, тогда
   \[
     R_\lambda - R_{\lambda_0} = (\lambda - \lambda_0)
@@ -77,36 +127,55 @@ $\mathcal{L}(E)$ "--- банахова алгебра.
   \]
 \end{proposition}
 \begin{proof}
-  По определению, $R_\lambda A_\lambda = A_\lambda R_\lambda = I$,
-  поэтому
+  Интуицию нужно искать в приведении дробей к общему знаменателю.
+  Если вместо операторов рассматривать числа, то всё очевидно:
+  \[
+    \frac1{A - \lambda \cdot 1} - \frac{1}{A - \lambda_0 \cdot 1} =
+    \frac{(A - \lambda_0) - (A - \lambda)}{(A - \lambda)(A - \lambda_0)} =
+    \frac{\lambda - \lambda_0}{(A - \lambda)(A - \lambda_0)}.
+  \]
+  Для случая операторов нужно вспомнить, что, по определению,
+  $R_\lambda A_\lambda = A_\lambda R_\lambda = I$,
+  а потому
   \[ R_\lambda - R_{\lambda_0} = 
     R_\lambda A_{\lambda_0} R_{\lambda_0} -
     R_\lambda A_\lambda R_{\lambda 0} =
     R_\lambda (A_{\lambda_0} - A_\lambda) R_{\lambda_0} =
-    R_\lambda (\lambda E - \lambda_0 E) R_{\lambda_0} =
+    R_\lambda (\lambda I - \lambda_0 I) R_{\lambda_0} =
     (\lambda - \lambda_0) R_\lambda R_{\lambda_0}.
   \]
 \end{proof}
 
-\begin{proposition}
+\begin{proposition} % 3
   $R_\lambda$ дифференцируема на $\rho(A)$.
 \end{proposition}
 \begin{proof}
-  \[  \frac{R_\lambda - R_{\lambda_0}}{\lambda - \lambda_0} =
+  С использованием предыдущих утверждений доказательство тривиально:
+  \[
+    \lim_{\lambda \to \lambda_0}
+    \frac{R_\lambda - R_{\lambda_0}}{\lambda - \lambda_0} =
+    \lim_{\lambda \to \lambda_0}
     \frac{(\lambda - \lambda_0) R_\lambda R_{\lambda_0}}{\lambda - \lambda_0} =
-    R_\lambda R_{\lambda_0} \xrightarrow{\lambda \to \lambda_0} R_{\lambda_0}^2.
+    \lim_{\lambda \to \lambda_0} R_\lambda R_{\lambda_0} = R_{\lambda_0}^2.
     \qedhere
   \]
 \end{proof}
 
-\begin{proposition}
-  Радиус сходимости ряда равен $r(A)$.
+Ряд Неймана
+\[
+  -\frac{1}{\lambda} \sum_{n=0}^\infty \frac{1}{\lambda^n} A^n.
+\]
+Ряд Лорана.
+
+\begin{proposition} % 4
+  Радиус сходимости ряда равен спектральному радиусу $r(A)$.
 \end{proposition}
 \begin{proof}
-  Пусть $|\lambda| > r(A)$, тогда $\lambda \in \rho(A)$
-  вне круга $|\lambda| \le r(A)$.
-  $R_\lambda$ разложим в ряд Лорана, который
-  сходится при $|\lambda| > |r(A)|$.
+  В кольце (в смысле комплексного анализа)
+  \( \{ \lambda : |\lambda| > r(A) \} \)
+  \( R_\lambda \) дифференциируема, а потому разложима в ряд Лорана.
+  Кроме того, ряд, конечно, сходится для $|\lambda| > r(A)$,
+  и единственность и всё ок.
   
   Пусть $|\lambda_| < r(A)$. Утверждается, что ряд Неймана
   расходится в этой точке. Пусть это не так, тогда
@@ -114,39 +183,61 @@ $\mathcal{L}(E)$ "--- банахова алгебра.
   и тогда $r(A)$ "<не является спектральным радиусом">.
 \end{proof}
 
-\begin{proposition}
-  $\lambda \in \sigma(A) \To \lambda^n \in \sigma(A^n)$.
-\end{proposition}
 
-\begin{exercise}
-  $\sigma(A^n) = (\sigma(A))^n $.
-\end{exercise}
-
-\begin{proof}
-  Предоложим противное: $\lambda^n \in \rho(A^n)$, т. е.
-  $(A - \lambda I)^{-1} \in \mathcal{L}(E)$.
-  Тогда умножим равенство
-  \[ (A^n - \lambda^n I) = (A - \lambda I)
-  (A^{n -1} + \lambda A^{n-2} + \dots + \lambda^{n-1} I) \]
-  справа на $(A^n - \lambda^n I)^{-1}$ мы покажем, что
-  $(A^{n -1} + \lambda A^{n-2} + \dots + \lambda^{n-1} I)(A^n - \lambda^n I)^{-1}$
-  "--- правый обратный для $(A - \lambda I)$, аналогично находим левый обратный,
-  и тогда $\lambda \in \rho(A)$.
-\end{proof}
-
-\begin{proposition}
-  $\sigma(A) \ne \emptyset$
+\begin{proposition} % 5
+  \( \sigma(A) \ne \emptyset \).
 \end{proposition}
 \begin{proof}
-  Предположи противное, т. е. что $R_\lambda$ "--- целая функция.
-  А там тип теорема Лиувилля.
+  Предположи противное, тогда \( \rho(A) = \Complex \)
+  и \( R_\lambda \) "--- целая функция.
+  В то же время, при больших \( \lambda \)
+  \[
+    ||R_\lambda|| =
+    ||-\frac{1}{\lambda} \sum_{n=0}^\infty \frac{1}{\lambda^n} A^n|| =
+    \frac{1}{\lambda} \cdot \frac{1}{1 - \frac{||A||}{|\lambda|}} \to 0.
+  \]
+  Значит, \( R_\lambda \) также ограничена, и тогда по теореме Лиувилля
+  она константа; кроме того, исходя из оценок на наорму,
+  она тождественно равна нулю; это, конечно, невозможно для обратного оператора.
 \end{proof}
 
 \begin{proposition} % 6
+  $\lambda \in \sigma(A) \To \lambda^n \in \sigma(A^n)$.
+\end{proposition}
+
+\begin{proof}
+  Предоложим противное: $\lambda^n \in \rho(A^n)$, т. е.
+  $(A^n - \lambda^n I)^{-1} \in \Linears{E}$.
+  Тогда умножив равенство
+  \[
+    (A^n - \lambda^n I) = (A - \lambda I)
+    (A^{n -1} + \lambda A^{n-2} + \dots + \lambda^{n-1} I)
+  \]
+  справа на \( (A^n - \lambda^n I)^{-1} \) мы покажем,
+  что \( (A^{n -1} + \dots + \lambda^{n-1} I)(A^n - \lambda^n I)^{-1} \)
+  "--- правый обратный оператор для \( (A - \lambda I) \).
+  Повторив действия симметрично мы получим и левый обратный оператор;
+  значит, по общим алгебраическим соображениям, они совпадают и
+  являются обратным оператором.
+  Но тогда \( \lambda \in \rho(A) \) "--- противоречие.
+\end{proof}
+
+\begin{exercise}
+  \( \sigma(A^n) = (\sigma(A))^n \).
+\end{exercise}
+
+\begin{proposition}
   $ r(A) = \lim \sqrt[n]{||A^n||} $.
 \end{proposition}
 \begin{proof}
-  Имеем: $r(A)  = r_{\text{сх}} = \limsup \sqrt[n]{||A^n||}$.
+  Мы уже показали, что спектральный радиус равен радиусу сходимости
+  ряда Лорана для \( R_\lambda \) на бесконечности;
+  с другой стороны, радиусом сходимости этого ряда определяется
+  формулой Коши-Адамара, а потому
+  \[
+    r(A) = \limsup_{n \to \infty} \sqrt[n]{||A^n||};
+  \]
+  теперь достаточно показать, что у этой последовательности есть предел.
 
   По утв $(r(A))^n \le r(A^n)$, или
   $r(A) \le \left(r(A^n) \right)^{1/n} \le ||A^n||^{1/n}$.
@@ -154,5 +245,12 @@ $\mathcal{L}(E)$ "--- банахова алгебра.
   \[ \liminf_{n \to \infty} \sqrt[n]{||A^n||} \ge r(A) = \limsup_{n \to \infty} \sqrt[n]{||A^n||}, \]
   а тогда верхний и нижний пределы совпадают, и существует равный им предел последовательности.
 \end{proof}
+
+\begin{exercise}
+  Оператор Вольтерра в \( C[0, 1] \) определяется так:
+  \[ (Af)(x) = \int_{0}^x f(t) dt. \]
+  Докажите, что \( r(A) = 0 \), \( \sigma(A) = \{ 0 \} \)
+  и при этом \( 0 \in \sigma_R(A) \).
+\end{exercise}
  
 \end{document}

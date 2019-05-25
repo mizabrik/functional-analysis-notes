@@ -100,7 +100,7 @@
   и \( A^{-1} \in \Linears{\Img A}[E_1] \).
 \end{itemproof}
 
-\begin{theorem}\label{thm:inverse-neumann}
+\begin{theorem}\label{thm:inverse-neumann} % 6.2
   Пусть \( E \) "--- банахово пространство,
   \( A \in \Linears{E} \) и \( ||A|| < 1 \).
   Тогда \( \exists (I + A)^{-1} \in \Linears{E} \).
@@ -170,9 +170,6 @@
 
 \begin{corollary}
   В условиях теоремы
-  \[ ||(I + A)^{-1} - S_n|| = ||\sum_{k = n + 1}^\infty A^k|| \le
-  \sum_{k = n+1}^\infty ||A||^k = \frac{||A||^{n+1}}{1 - ||A||}, \]
-  и, в частности,
   \[
     ||(I + A)^{-1}|| \le \frac{1}{1 - ||A||}, \quad
     ||(I + A)^{-1} - I|| \le \frac{||A||}{1 - ||A||}.
@@ -206,7 +203,7 @@
   \( ||A^n|| = \frac{1}{n!} \), поэтому уточнение существенно.
 \end{example}
 
-\begin{theorem}
+\begin{theorem} % 6.3
   Пусть \( E_1 \) "--- банахово пространство,
   \( E_2 \) "--- нормированное пространство
   и \( A \in \Linears{E_1}[E_2] \)
@@ -237,7 +234,7 @@
   и \( ||A^{-1} - {(A + \Delta)}^{-1}|| \).
 \end{exercise}
 
-\begin{theorem}[Банах, об обратном операторе, б/д]
+\begin{theorem}[Банах, об обратном операторе, б/д] % 6.4
   Пусть \( E_1 \), \( E_2 \) "--- банаховы пространства,
   \( A \in \mathcal{L}(E_1, E_2) \) "--- биекция.
   Тогда \( A^{-1} \in \mathcal{L}(E_2, E_1) \).

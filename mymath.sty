@@ -8,6 +8,7 @@
 
 \RequirePackage{xparse}
 
+
 % ---- Quantifiers ----
 \newcommand{\Forall}[1]{\ensuremath{\forall {#1} \; \,}}
 \newcommand{\Exists}[1]{\ensuremath{\exists #1 \colon \:}}
@@ -54,6 +55,8 @@
 \DeclareMathOperator{\Ker}{Ker}
 \DeclareMathOperator{\Img}{Im}
 
+\DeclareMathOperator{\codim}{codim}
+
 % ---- Sign operator ----
 \DeclareMathOperator{\sgn}{sgn}
 
@@ -99,3 +102,16 @@
 
 \renewcommand\Re{\operatorname{Re}}
 \renewcommand\Im{\operatorname{Im}}
+
+\NewDocumentCommand{\muel}{}{\mu_{\text{эл}}}
+
+\NewDocumentCommand{\muae}{}{\:\: {\text{ п. в.}}}
+
+\DeclareMathOperator{\toae}{\xrightarrow{\text{п.в.}}}
+%\DeclareMathOperator{\toae}{\overset{\text{п.в.}}{\to}}
+\DeclareMathOperator{\eqae}{\overset{\text{п.в.}}{=}}
+
+\NewDocumentCommand{\intl}{}{L \! \! \int\limits}
+
+\NewDocumentCommand{\preLp}{}{\widetilde{L}_1}
+\NewDocumentCommand{\Lp}{}{L}

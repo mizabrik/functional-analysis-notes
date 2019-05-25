@@ -1,116 +1,214 @@
 \documentclass[main]{subfiles}
 
 \begin{document}
-\section{Сопряжённые операторы} % 11
 
-Пусть задано два линейных нормированных пространства
-$E_1$ и $E_2$ над $\Complex$; нас так же будут
-интересовать их сопряжённые пространства
-$E_1^*$ и $E_2^*$.
-Пусть так же зафиксирован оператор $A \in \mathcal{L}(E_1, E_2)$,
-тогда существует естественный способ определить
-отображение $A^* : E_2^* \to E_1^*$:
-\[
-  g \mapsto g \circ A
-\]
-благодрая тому, что композиция сохраняет линейность
-и непрерывность.
+\section{Самосопряжённые операторы}%12
 
-\begin{definition}
-  \( A^* \) называется \emph{сопряжённым} к \( A \) оператором.
-\end{definition}
-
-\begin{theorem}%11.1
-  Пусть $E_1$, $E_2$ "--- ЛНП над $\Complex$,
-  $A \in \mathcal{L}(E_1, E_2)$.
-  Тогда $A^* \in \mathcal{L}(E_2^*, E_1^*)$
-  и $||A^*|| = ||A|$.
-\end{theorem}
-\begin{proof}
-  Линейность $A^*$ очевидна из равенства
-  $(A^* g)(x) = g(Ax)$. Более того,
-  \[
-    |(A^* g)(x)| = |g(Ax)| \le
-    ||g|| \cdot ||Ax|| \le ||g|| \cdot ||A|| \cdot ||x||,
-  \]
-  т. е. $||A^* g|| \le ||A|| \cdot ||g||$.
-  Значит, $A^*$ непрерывен и, более того,
-  $||A^*|| \le ||A||$.
-
-  Осталось доказать, что $||A^*|| \ge ||A||$.
-  Действительно, по следствию из теоремы Хана-Банаха для произвольного $x \in E_1$
-  \[
-    ||A x|| = \sup_{||g||_{E_2^*} = 1} |g(Ax)| =
-    \sup_{||g|| = 1} |(A^* g)(x)| \le
-    \sup_{||g|| = 1} ||A^* п|| \cdot ||x|| \le
-    \sup_{||g|| = 1} ||A^*|| \cdot ||g|| \cdot ||x|| =
-    ||A^*|| \cdot ||x||.
-  \]
-\end{proof}
-
-В гильбертовых пространствах такие берём теорему
-Рисса-Фреше и получаем $A^* \in \mathcal{L}(H_2, H_1)$.
-
-\begin{exercise}[без Т11.1]
-  Пусть $H$ "--- гильбертово пространство,
-  $A \in \mathcal{L}(H)$.
-  Тогда существует $A^* \in \mathcal{L}(H)$
-  такой, что
-  \( \Forall{x, y \in H} (Ax, y) = (x, Ay) \)
-  и $||A^*|| = ||A||$.
-\end{exercise}
-
-\begin{exercise}
-  Пусть $H$ "--- ГП, $A, B \in \mathcal{L}(H)$.
-  Тогда
-  \begin{enumerate}
-    \item $(\alpha A + \beta B)^* = \overline{\alpha} A^* + \overline{\beta} B^*$
-    \item $(AB)^* = B^* A^*$
-    \item $I^* = I$
-    \item $(A^*)^* = A$
-  \end{enumerate}
-\end{exercise}
-
-\begin{theorem}%11.2
-  Пусть $H$ "--- гильбертово пространство над $\Complex$,
-  $A \in \mathcal{L}(H)$. Тогда
-  \[
-    \overline{\Img A} \oplus \Ker A^* = H.
-  \]
-\end{theorem}
-\begin{proof}
-  Покажем, что $(\Img A)^\perp = \Ker A^*$,
-  тогда проекция.
-
-  $y \in (\Img A)^\perp \oTTo
-  \Forall{x \in H} (Ax, y) = 0
-  \oTTo \Forall{x \in H} (f, A^* y) = 0
-  \oTTo A^* y = 0 \oTTo y \in \Ker A^*$.
-\end{proof}
-
-\begin{exercise}
-  $A \in \mathcal{L}(l_2)$,
-  $(Ax)_n = \sum_{k=1}^\infty a_{nk} x_k$,
-  $\sum |a_{nk}|^2 < \infty$.
-  Тогда $A^*$ задаётся $b_{ij} = \overline{a_{ji}}$.
-\end{exercise}
-
-\section{Самосопряжённые операторы}
+В данном параграфе мы будем рассматривать
+комплексные гильбертовы пространства.
 
 \begin{definition}
   Пусть $H$ "--- гильбертово пространство,
-  $A \in \mathcal{L}(H)$. $A$ называется
+  $A \in \Linears{H}$. $A$ называется
   \emph{самосопряжённым}, если $A^* = A$.
 \end{definition}
 
+\begin{exercise}
+  В \( H = \ell_2(\Complex) \),
+  выберем стандартный базис \( \{ e^n \} \),
+  тогда оператор \( A \) задаётся бесконечной матрицей
+  \( (a_{ij} \). Докажите, что
+  оператор \( A \) самосопряжён \( \oTTo \)
+  \( a_{ji} = \overline{a_{ij}} \).
+\end{exercise}
+
+\begin{exercise}
+  Привести пример самосопряжённого (?) оператора \( A \)
+  над сепарабельным гильбертовом пространством такого,
+  что из его собственных векторов нельзя выбрать
+  ортонормированный базис.
+\end{exercise}
+
 \begin{remark}
   Самосопряжённость подразумевает линейность и ограниченность,
-  свойство $(Ax, y) = (x, Ay)$ определяет класс
+  свойство $\Inner{Ax, y} = \Inner{x, Ay}$ определяет класс
   \emph{симметрических} операторов.
   Однако, теорема Хеллингера-Тёлпица утверждает,
   что симметрический линейный оператор будет также ограниченным,
   а потому и самосопряжённым.
 \end{remark}
+
+\begin{theorem}%12.1
+  Пусть \( H(\Complex) \) "--- гильбертово пространство,
+  \( A \) "--- ССО на \( H \). Тогда
+  \begin{enumerate}
+    \item \( \Forall{x \in H} \Inner{Ax, x} \in \Real \),
+    \item если \( \lambda \) "--- собственное значение \( A \),
+      то \( \lambda \in \Real \),
+    \item если \( \lambda_1 \ne \lambda_2 \) "---
+      собственные значения \( A \),
+      а \( e_1 \) и \( e_2 \) "--- соответствующие им
+      собственные вектора, то \( \Inner{e_1, e_2} = 0 \).
+  \end{enumerate}
+\end{theorem}
+
+\begin{exercise}
+  Если \( \Forall{x \in H} \Inner{Ax, x} \in \Real \),
+  то \( A \) "--- ССО.
+\end{exercise}
+
+\begin{proof}~\begin{enumerate}
+  \item С одной стороны, \( \Inner{Ax, x} = \Inner{x, Ax} \);
+    с другой, \( \Inner{Ax, x} = \overline{\Inner{x, Ax}} \).
+    Значит, \( \Inner{Ax, x} \in \Real \).
+  \item Если \( \lambda \) "--- с. з., то
+    \( \Exists{e \ne 0} Ae = \lambda e \).
+    Тогда \( \Inner{Ae, e} = \Inner{\lambda e, e} =
+    \lambda \Inner{e, e} \) "---
+    вещественное число, а т. к. \( \Inner{e, e} \in \Real \),
+    то и \( \lambda \in \Real \).
+  \item pass
+\end{enumerate}\end{proof}
+
+Для ССО \( A \) и \( \lambda \in \Complex \)
+\( A_\lambda^* = (A - \lambda I)^* = A^* - \overline{\lambda} I^* =
+A - \overline{\lambda} I = A_{\overline{\lambda}} \),
+и тогда по Т.11.2
+\( \overline{\Img A_\lambda} \oplus
+\Ker A_{\overline{\lambda}} = H \).
+
+\begin{theorem}
+  \( \overline{\Img A_\lambda} \oplus
+  \Ker A_{\lambda} = H \).
+\end{theorem}
+\begin{proof}
+  Если \( \lambda \in \Real \), то попросту
+  \( \overline{\lambda} = \lambda \).
+  Иначе, ни \( \lambda \),
+  ни \( \overline{\lambda} \) не являются собственными
+  значениями \( A \), и тогда
+  \( \Ker A_\lambda = \{ 0 \} = \Ker A_{\overline\lambda} \).
+\end{proof}
+
+\begin{theorem}[критерий принадлежности числа спектру самосопряжённого оператора]%12.3
+  Пусть \( H \) "--- комплексное гильбертово пространство,
+  \( A \in \Linears{H} \) "--- самосопряжённый оператор.
+  Тогда
+  \begin{enumerate}
+    \item \( \lambda \in \rho(A) \oTTo
+      \Exists{m > 0} \Forall{x \in H} ||A_\lambda x|| \ge m ||x|| \)
+    \item \( \lambda \in \sigma(A) \oTTo
+      \Exists{ {\{ x_n \}}_{n=1}^\infty }
+      \Forall{n} ||x_n|| = 1, \: \:
+      ||A_\lambda x_n|| \to 0 \)
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  Следствие слева направо в первом пункте напрямую следует из
+  Т 6.1. % TODO: ссылка
+  В обратну сторону та же теорема даст нам существование
+  обратного оператора лишь на \( \Img A_\lambda \).
+  Однако, мы уже знаем, что
+  \( H = \overline{\Img A_\lambda} \oplus \Ker A_\lambda =
+  \overline{\Img A_\lambda} \oplus \{ 0 \} = \overline{\Img A_\lambda} \).
+  Значит, если мы покажем замкнутость \( \Img A_\lambda \),
+  мы докажем, что обратный оператор к \( A_\lambda \)
+  определён на всём \( H \).
+  Пусть \( \{ y_m \} \) "--- последовательность из
+  \( \Img A_\lambda \) и \( y_n \to y \);
+  нужно доказать, что тогда \( y \in \Img A_\lambda \).
+  Выберем \( \{ x_n \} \) такие, что \( A_\lambda x_n = y_n \);
+  по условию,
+  \[ ||x_n - x_{n+p}|| \le
+    \frac1m ||A_\lambda (x_n - x_{n+p})||
+    = \frac1m ||y_n - y_{n+p}||, \]
+  а потому \( \{ x_n \} \) фундаментальна,
+  ведь \( \{ y_n \} \) фундаментальна как сходящаяся последовательность.
+  Значит, у \( \{ x_n \} \) существует предел \( x \)
+  и т. к. \( A_\lambda \) "--- непрерывный оператор, то
+  \( y = A_\lambda x \), то есть \( y \in \Img A_\lambda \).
+
+  В силу того, что \( \sigma(A) \) есть дополнение к
+  \( \rho(A) \), достаточно установить эквивалентость
+  условия из первого пункта и отрицания условия из второго.
+  Действительно, если такая константа \( m > 0\) найдётся,
+  то при \( ||x_n|| = 1 \) \( ||A_\lambda x_n|| \ge m \),
+  и тогда \( ||A_\lambda x_n|| \not \to 0 \).
+  Наоборот, если такой константы нет,
+  то для произвольного \( n \) мы сможем выбрать
+  \( y_n \) такой, что \( ||A_\lambda y_n|| < \frac1n ||y_n|| \)
+  (отметим, что из-за строгости неравенства
+  \( ||y_n|| \) не может равняться нулю)
+  В таком случае, \( x_n = \frac{y_n}{||y_n||} \)
+  будет искомой последовательностью, ведь
+  \[
+    ||A_\lambda x_n|| = \frac{||A_\lambda y_n||}{||y_n||}
+    < \frac1n \frac{||y_n||}{||y_n||} = \frac1n \to 0.
+    \qedhere
+  \]
+\end{proof}
+
+\begin{theorem}%12.4
+  Пусть \( H \) "--- комплексное гильбертово пространство,
+  \( A \in \Linears{H} \) "--- самосопряжённый оператор.
+  Тогда \( \sigma(A) \subset \Real \) и
+  если \( \lambda \notin \Real \), то
+  \( ||R_\lambda(A)|| \le \frac{1}{|\Im \lambda|} \).
+\end{theorem}
+
+\begin{theorem}%12.5
+  Пусть \( H \) "--- комплексное гильбертово пространство,
+  \( A \in \Linears{H} \) "--- самосопряжённый оператор.
+  Тогда \( \sigma(A) \subset [m_{-}, m_{+}] \),
+  где
+  \[
+    m_{-} = \inf_{||x||=1} \Inner{Ax, x}, \\
+    m_{+} = \sup_{||x||=1} \Inner{Ax, x},
+  \]
+  при чём, \( m_{-}, m_{+} \in \sigma(A) \).
+  Кроме того,
+  \[
+    r(A) = ||A|| = \max \{ |m_{-}|, |m_{+}| \}.
+  \]
+\end{theorem}
+\begin{proof}
+  В силу предыдущей теоремы, достаточно
+  рассматривать \( \lambda \in \Real \).
+  Покажем, что если \( \lambda > m_+ \),
+  то \( \lambda \in \rho(A) \).
+  Достаточно найти \( m > 0 \) такое,
+  что \( ||A_\lambda x|| \ge m ||x|| \).
+  По неравенству Коши-Буняковского,
+  \( ||A_\lambda x|| \cdot ||x|| \ge
+  |\Inner{A_\lambda x, x}| = 
+  |\Inner{A x, x} - \lambda ||x||^2| \).
+  При этом, очевидно, \( \Inner{A x, x} \le ||x||^2 m_+ \),
+  и, раз \( \lambda > m_+ \),
+  \( |\Inner{Ax, x} - \lambda ||x||^2| =
+  \lambda ||x||^2 - \Inner{Ax, x} \ge
+  (\lambda - m_+) ||x||^2 \).
+  Объединяя две части и сокращая на \( ||x|| \),
+  мы получаем неравенство
+  \( ||A_\lambda x|| \ge (\lambda - m_+) ||x|| \),
+  т. е. нам подходит \( m = \lambda - m_+ \).
+
+  По Т.7.1 \( r(A) = \lim_{n\to\infty} \sqrt[n]{||A^n||} \).
+  Легко показать, что \( ||A^2|| = ||A||^2 \);
+  очевидно, \( ||A^2|| \le ||A||^2 \), и, с другой стороны,
+  \[ ||A x||^2 = \Inner{Ax, Ax} = \Inner{A^2x, x}
+  \le ||A^2 x|| \cdot ||x||ю \]
+  Поскольку существует предел, мы можем найти его
+  по произвольной подпоследовательности, а потому
+  \[
+    r(A) = \lim_{k \to \infty} \sqrt[2^k]{||A^{2^k}||} =
+    \lim_{k \to \infty} \sqrt[2^k]{||A||^{2^k}} = ||A||.
+    \qedhere
+  \]
+\end{proof}
+
+\begin{exercise}
+  Лемма \( ||A^n|| = ||A||^n \) для ССО.
+\end{exercise}
 
 \begin{exercise}
   Докажите неравенство Коши-Буняковского для полускалярного
