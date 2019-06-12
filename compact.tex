@@ -277,13 +277,13 @@
   поэтому  \( \lambda \)
   не может быть собственным значением \( \tilde A \).
   Значит, \( \lambda \in \rho(\tilde A) \).
-  Тогда, конечно, образ оператора \( \tilde A \) равен
+  Тогда, конечно, образ оператора \( \tilde A_\lambda \) равен
   его области определения "--- \( \overline{\Img A_\lambda} \).
-  Наконец, поскольку мы просто сузили оператор \( A_\lambda \),
+  Наконец, поскольку \( \tilde A_\lambda \) "--- просто сужение \( A_\lambda \),
   \[
     \Img A_\lambda \subset
     \overline{\Img A_\lambda} =
-    \Img \tilde A \subset
+    \Img \tilde A_\lambda \subset
     \Img A_\lambda. \qedhere
   \]
 \end{proof}
@@ -359,7 +359,7 @@
   \]
   Тогда и \( M^\perp \) инвариантно относительно \( A \),
   а значит \( A_0 = A \bigr|_{M^\perp} \) "---
-  компактный самосопряжённый оператор из \( \Linears(M^\perp \).
+  компактный самосопряжённый оператор из \( \Linears{M^\perp} \).
   Более того, он не имеет собственных значений.
   Значит, вследствие леммы~\ref{thm:ksco-eigenvalue},
   \( A_0 = 0 \).
@@ -367,5 +367,17 @@
   собственное значение \( A_0 \),
   что противоречит его построению.
 \end{proof}
+
+%\begin{example}
+%  Доказать, что краевая задача
+%  \[
+%    \begin{cases}
+%      y'' + \lambda \sin y = f(x), & x \in (0, 1) \\
+%      y(0) = y(1) = 0
+%    \end{cases}
+%  \]
+%  имеет решение для любых \( \lambda \in \Real \)
+%  и \( f \in C[0, 1] \).
+%\end{example}
 
 \end{document}
