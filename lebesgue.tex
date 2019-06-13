@@ -427,7 +427,7 @@
 \begin{theorem*}
   Пусть функция \( f : [a, b] \to \Real \)
   интегрируема по Риману на отрезке \( [a, b] \).
-  Тогда \( f \in \preLp[a, b] \) и при этом
+  Тогда \( f \in \preLp[a, b] \) и
   \[
     \intl_{[a,b]} f d \mu = \int\limits_a^b f(x) dx.
   \]
@@ -504,7 +504,65 @@
 \begin{remark}
   Такая конструкция также сохраняет выполнимость теорем
   Лебега, Фату, Леви и Фубини.
+  Кроме того, сохраняется согласованность
+  с интегрированием по Риману.
 \end{remark}
+
+\begin{example}
+  Пусть \( \{ f_n \}_{n=1}^\infty \) "---
+  ограниченная последовательность из \( C[a, b] \),
+  сходящаяся поточечно к \( f \in C[a, b] \).
+  Тогда
+  \[
+    \intr_0^1 f_n(x) dx \to \intr_0^1 f(x) dx.
+  \]
+  Несмотря на то, что тут говорится об интеграле
+  Римана, и даже все функции непрерывны,
+  доказательство этого факта классическими методами
+  достаточно трудоёмко.
+  Однако, он следует напрямую из теоремы Лебега
+  и согласованности интеграла Римана с интегралом Лебега.
+\end{example}
+
+\begin{example}
+  Пусть \( f(x) : \Real \to \Real \) "---
+  неотрицательная функция
+  и
+  \[
+    \intr_{-\infty}^{+\infty} f(x) dx = 1.
+  \]
+  Обозначим
+  \( f_\epsilon(x) = \frac1\epsilon f(\frac{x}{\epsilon}) \)
+  и покажем, что
+  \( f_\epsilon \to \delta(x) \) при \( \epsilon \to 0 \)
+  в пространстве обобщённых функций \( D'(\Real) \).
+
+  Итак, пусть \( \phi \in D' \),
+  тогда
+  \[
+    (\phi, f_\epsilon) =
+    \intr_{-\infty}^{+\infty} \phi(x) \cdot \frac1\epsilon
+    f(\frac{x}{\epsilon}) dx =
+    \intr_{-\infty}^{+\infty} \phi(\epsilon z) \cdot
+    f(z) dz =
+    \intl_{\Real} \phi(\epsilon z) \cdot
+    f(z) dz.
+  \]
+  Остаётся заметить, что для любого \( z \)
+  \[
+    \lim_{\epsilon \to 0} \phi(\epsilon z) \cdot f(z) =
+    \phi(0) \cdot f(z),
+  \]
+  и при этом \( |\phi(\epsilon z) \cdot f(z)| \le \max_x \phi(x) \cdot f(z) \).
+  После домножения на константу \( f(z) \)
+  остаётся интегрируемой, и тогда по теореме Лебега
+  \[
+    (\phi, f_\epsilon) =
+    \intl_{\Real} \phi(\epsilon z) \cdot f(z) dz \to
+    \intl_{\Real} \phi(0) \cdot f(z) = \phi(0) = (\phi, \delta(x)),
+  \]
+  т. е. \( f_\epsilon \to \delta(x) \), что и требовалось.
+\end{example}
 
 \subsection{Пространства \( \Lp_p \)}
 
