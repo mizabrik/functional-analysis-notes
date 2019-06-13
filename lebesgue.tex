@@ -873,36 +873,63 @@
 
 \subsection{Преобразование Фурье в \( L_1(\Real^n) \)}
 
-Преобразование Фурье обозначается с помощью крышечки:
-\( f \in L_1 \mapsto \hat f (\xi) \).
-\[
-  \hat f (\xi) = \frac1{(2 \pi)^{n/2}} \intl_{\Real^n} f(x) e^{i\Inner{x, \xi}} dx
-\]
-
 \begin{theorem*}
-  Если \( f \in L_1 \), то \( \hat f \in BC(\Real^n) \)
-  (ограничена и непрерывна).
+  Пусть \( f \in L_1(\Real^n) \),
+  тогда для неё корректно определено
+  её преобразование Фурье
+  \[
+    \hat f (\xi) = \frac1{(2 \pi)^{n/2}} \intl_{\Real^n} f(x) e^{i\Inner{x, \xi}} dx;
+  \]
+  функция \( \hat f \)
+  непрерывна и ограничена,
+  т. е. \( \hat f \in BC(\Real^n) \).
   Более того, \( \hat f(\xi) \to 0 \)  при \( \xi \to \infty \).
 \end{theorem*}
 
-Операция свёртки:
-\[
-  (f * g)(x) = \intl_{R^n} f(y) d(x - y) dy.
-\]
+\begin{definition}
+  \emph{Свёрткой} функций \( f, g \in L_1(\Real^n) \)
+  называется отображение \( f * g : \Real^n \to \Real \),
+  заданное следующим образом:
+  \[
+    (f * g)(x) = \intl_{\Real^n} f(y) g(x - y) dy.
+  \]
+\end{definition}
 
 \begin{theorem*}
-  \( \widehat{f * g} = \hat f \cdot \hat g \).
+  Пусть \( f, g \in L_1(\Real^n) \).
+  Тогда
+  \( \widehat{f * g} = \hat f \cdot \hat g. \)
 \end{theorem*}
 
-\( F^4 = I \)
+\subsection{Преобразование Фурье в \( L_2(\Real^n) \)}
 
-В \( L_2 \): \( \hat f \in L_2 \).
-\[
-  f(x) = \intl_{\Real^n} \hat f(\xi) e^{-i \Inner{x, \xi}} d \xi.
-\]
+\begin{theorem*}
+  Преобразование Фурье определено для любой
+  функции \( f \in L_2(\Real^n) \),
+  и при этом \( \hat f \in L_2(\Real^n) \).
+  Более того, \( F : f \mapsto \hat f \) "---
+  линейный ограниченный оператор и \( F^4 = I \).
+\end{theorem*}
 
-Равенство Парсеваля: \( ||\hat f||_2 = ||f||_2 \).
+\begin{theorem*}
+  Если \( f \in L_2(\Real^n) \), то
+  \[
+    f(x) = \frac1{(2 \pi)^{n/2}} \intl_{\Real^n} \hat f(\xi) e^{-i\Inner{x, \xi}} dx;
+  \]
+\end{theorem*}
 
-Равенство Блаблабла: \( \Inner{f, g} = \Inner{\hat f, \hat g} \).
+\begin{theorem*}[Равенство Парсеваля]
+  Если \( f \in L_2(\Real^n) \), то
+  \[
+    ||f|| = ||\hat f||.
+  \]
+\end{theorem*}
+
+\begin{theorem*}[Равенство Планшереля]
+  Если \( f, g \in L_2(\Real^n) \), то
+  \[
+    \Inner{f, g} = \Inner{\hat f, \hat g}.
+  \]
+\end{theorem*}
 
 \end{document}
