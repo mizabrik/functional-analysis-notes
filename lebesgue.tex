@@ -874,15 +874,21 @@
   со значениями в \( \Complex \).
 \end{remark}
 
-\subsection{Преобразование Фурье в \( L_1(\Real^n) \)}
+\subsection{Преобразование Фурье}
+
+\begin{definition}
+  Для измеримой функции \( f : \Real \to \Real \)
+  определим её преобразование
+  Фурье
+  \[
+    \hat f (\xi) = \frac1{(2 \pi)^{n/2}} \intl_{\Real^n} f(x) e^{i\Inner{x, \xi}} dx.
+  \]
+\end{definition}
 
 \begin{theorem*}
   Пусть \( f \in L_1(\Real^n) \),
-  тогда для неё корректно определено
-  её преобразование Фурье
-  \[
-    \hat f (\xi) = \frac1{(2 \pi)^{n/2}} \intl_{\Real^n} f(x) e^{i\Inner{x, \xi}} dx;
-  \]
+  тогда для неё определено
+  её преобразование Фурье,
   функция \( \hat f \)
   непрерывна и ограничена,
   т. е. \( \hat f \in BC(\Real^n) \).
@@ -904,14 +910,13 @@
   \( \widehat{f * g} = \hat f \cdot \hat g. \)
 \end{theorem*}
 
-\subsection{Преобразование Фурье в \( L_2(\Real^n) \)}
-
 \begin{theorem*}
   Преобразование Фурье определено для любой
   функции \( f \in L_2(\Real^n) \),
   и при этом \( \hat f \in L_2(\Real^n) \).
-  Более того, \( F : f \mapsto \hat f \) "---
-  линейный ограниченный оператор и \( F^4 = I \).
+  Более того, \( F : f \mapsto \hat f \)
+  принадлежит \( \Linears{L_2} \)
+  и \( F^4 = I \).
 \end{theorem*}
 
 \begin{theorem*}
