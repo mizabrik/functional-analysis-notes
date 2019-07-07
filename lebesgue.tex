@@ -620,7 +620,7 @@
   Пусть \( f, g : [a, b] \to \Real \) "---
   измеримые функции, \( p > 1 \) и
   \( \frac1p + \frac1q = 1 \).
-  Если \( |f|^p \) и \( |f|^q \) интегрируемы на \( [a, b] \),
+  Если \( |f|^p \) и \( |g|^q \) интегрируемы на \( [a, b] \),
   то \( f \cdot g \) также интегрируема на \( [a, b] \),
   и при этом
   \[
@@ -633,7 +633,7 @@
 \begin{proposition}[неравенство Минковского]
   Пусть \( f, g : [a, b] \to \Real \) "---
   измеримые функции, \( p > 1 \).
-  Если \( |f|^p \) и \( |g|^q \) интегрируемы на \( [a, b] \),
+  Если \( |f|^p \) и \( |g|^p \) интегрируемы на \( [a, b] \),
   то \( |f + g|^p \) также интегрируема на \( [a, b] \),
   и при этом
   \[
@@ -664,15 +664,18 @@
   Определение корректно, т. к.
   \( [0] = \{ f \in \preLp[a, b] \mid f = 0 \muae \} \) "---
   линейное многообразие в \( \preLp \).
-  Замкнутость следует из того, что
+  Замкнутость относительно линейных операций
+  следует из того, что
   \begin{align}
     \intl |\alpha f + \beta g|^p d\mu &=
-    \intl |\alpha f + \beta g|^p I(f > g) d\mu +
-    \intl |\alpha f + \beta g|^p I(f \le g) d\mu \le \\
-    &\le \intl |2 \alpha f|^p I(f > g) d\mu +
-    \intl |2 \beta g|^p I(f \le g) \le
-    2 \alpha \intl |f|^p d\mu +
-    2 \beta \intl |g|^p d\mu.
+    \intl |\alpha f + \beta g|^p I(\alpha f >  \beta g) d\mu +
+    \intl |\alpha f + \beta g|^p I(\alpha f \le \beta g) d\mu \\
+    &\le
+    \intl |2 \alpha f|^p I(\alpha f > \beta g) d\mu +
+    \intl |2 \beta g|^p I(\alpha f \le \beta g) d\mu \\
+    &\le
+    2 |\alpha|^p \intl |f|^p d\mu +
+    2 |\beta|^p \intl |g|^p d\mu.
   \end{align}
   Далее мы будем отождествлять функцию
   \( f \) с её классом эквивалентности \( [f] \).

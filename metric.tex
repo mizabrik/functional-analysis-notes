@@ -9,33 +9,55 @@
   пара \( (X, \rho) \), где \( \rho : X \times X \to \Real \) и
   для любых \( x, y, z \in X \) верно:
   \begin{enumerate}
-    \item \( \rho(x, y) \ge 0 \), \( \rho(x, y) = 0 \oTTo x = y \)
-    \item \( \rho(x, y) = \rho(y, x) \)
-    \item \( \rho(x, y) \le \rho(x, z) + \rho(z, y) \)
+    \item \( \rho(x, y) \ge 0 \), \( \rho(x, y) = 0 \oTTo x = y \),
+    \item \( \rho(x, y) = \rho(y, x) \),
+    \item \( \rho(x, y) \le \rho(x, z) + \rho(z, y) \).
   \end{enumerate}
   Отображение \( \rho \) называется \emph{метрикой}.
 \end{definition}
 
 Примеры метрических пространств:
 \begin{itemize}
-  \item Дискретная метрика на произвольном \( X \):
-    \( \rho(x, y) = I\{ x \ne y \} \)
+  \item Произвольное множество \( X \)
+    с дискретной метрикой:
+    \( \rho(x, y) = I\{ x \ne y \} \).
   \item 
-    \( (\Real^n, \rho_p) \), где \( p \ge 1 \) и
-    \( \rho_p(x, y) = \left( \sum_{k=1}^{n}
-    |x_k - y_k|^p \right)^{1/p} \),
-    \( \rho_\infty(x, y) = \max_k |x_k - y_k| \)
+    \( \Real^n_p = (\Real^n, \rho_p) \),
+    где \( p \in [1, \infty] \),
+    \[
+      \rho_p(x, y) =
+      \left( \sum_{k=1}^{n}
+        |x_k - y_k|^p
+      \right)^{\frac1p}
+    \]
+    для \( p \in [1, \infty) \)
+    и
+    \[
+      \rho_\infty(x, y) = \max_k |x_k - y_k|.
+    \]
   \item 
-    \( C[a, b] \) с метрикой
-    \( \rho(f, g) = \sup_{x \in [a, b]} |f(x) - g(x)| \)
-  \item \( C_2[a, b] \) с метрикой
-    \( \rho(f, g) = \sqrt{\int_a^b |f(x) - g(x)|^2 dx} \)
+    \( C[a, b] \) "--- множество непрерывных отображений
+    \( [a, b] \to \Real \)
+    с метрикой
+    \[
+      \rho(f, g) = \sup_{x \in [a, b]} |f(x) - g(x)|.
+    \]
+  \item \( C_p[a, b] \) "---
+    множество непрерывных функций
+    \( [a, b] \to \Real \)
+    с метрикой
+    \[
+      \rho_p(f, g) =
+      \sqrt[p]{\int\limits_a^b |f(x) - g(x)|^p dx}.
+    \]
 \end{itemize}
 
 \begin{definition}
-  \emph{Подпространством} метрического пространства \( (X, \rho_X) \)
-  называется подмножество \( Y \subset X \) с индуцированной метрикой
-  \( \rho_Y(y_1, y_2) = \rho_X(y_1, y_2) \).
+  \emph{Подпространством} метрического пространства \( (X, \rho) \)
+  называется метрическое пространство из
+  подмножества \( Y \subset X \)
+  с индуцированной метрикой
+  \( \rho_Y = \rho\bigr|_{Y \times Y} \).
 \end{definition}
 
 До начала рассмотрения топологических пространств будем считать,
